@@ -1,7 +1,5 @@
 # Monte Carlo Ergebnisse für KATHODE
 # Radius: 5.220 µm
-# Variation_unten: 1.200 (a/c ≈ 0.833)
-# Variation_oben: 1.200 (a/c ≈ 1.200)
 # Aspektverhältnis-Bereich: 1.728 - 0.579
 # Anzahl Monte-Carlo-Samples: 200000 
 # Anzahl verschiedener Ellipsoidformen: 21 
