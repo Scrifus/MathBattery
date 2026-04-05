@@ -1,7 +1,5 @@
 # Monte Carlo Ergebnisse für ANODE
 # Radius: 5.860 µm
-# Variation_unten: 1.200
-# Variation_oben: 1.630
 # Aspektverhältnis-Bereich: 4.331 - 1.728
 # Anzahl Monte-Carlo-Samples: 100000 
 # Anzahl verschiedener Ellipsoidformen: 21 
