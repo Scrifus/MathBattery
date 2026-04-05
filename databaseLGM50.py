@@ -1,6 +1,5 @@
 # database-LGM50.py
 # ---------------- Referenzwerte aus Traskunov & Latz (2021) ----------------
-# Basiert auf Traskunov & Latz (2021) - Electrochimica Acta 379 (2021) 138144
 # LG M50 Graphite open-circuit potential as a function of stoichiometry, fit taken
 #     Chang-Hui Chen, Ferran Brosa Planella, Kieran O Regan, Dominika Gastol, W.
 #     Dhammika Widanage, and Emma Kendrick. "Development of Experimental Techniques for
