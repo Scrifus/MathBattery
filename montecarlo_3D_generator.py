@@ -5,12 +5,10 @@
 WISSENSCHAFTLICH FUNDIERTE ASPEKTVERHÄLTNISSE:
  
 Die Achsenverhältnisse der Ellipsoide basieren auf gemessenen Werte der Querschnitte der Elektroden.
-Die Bilder des Raster-Elektronen-Mikroskops sind in Cheng2020 Figure 3 zu finden (siehe databaseLGM50.py)
-Hierbei hat die Kathode annähernd Kugelförmige Aktivpartikel.
-Die Anode im Durchschnitt das Verhältniss 3/1. Dahe die Werte:
-
-Anode: Variation_unten=0.7,  Variation_oben=1.5
-Kathode: Variation_unten=1.2, Variation_oben=1.2,
+Die Bilder des Raster-Elektronen-Mikroskops sind in Cheng2020 zu finden (siehe databaseLGM50.py)
+ 
+ 
+  prolat > 1, oblat < 1
 """
  
 import time
@@ -58,14 +56,12 @@ def generate_ellipsoid_data(
     print(f"3D-Ellipsoide für {electrode_type.upper()}")
     print(f"{'='*70}")
     print(f"Radius: {(Radius * 1e6 * database['L_ges']):.2f} µm")
-    print(f"Variation_unten: {Variation_unten:.3f} (a/c ≈ {1/Variation_unten:.3f})")
-    print(f"Variation_oben: {Variation_oben:.3f} (a/c ≈ {Variation_oben:.3f})")
     print(f"Anzahl Formen: {Menge}")
     print(f"Monte-Carlo Samples: {Zufallsmenge}")
     print(f"{'='*70}\n")
    
     # Halbachsen berechnen
-    Halbachse_a = np.linspace(Radius * Variation_oben, (1/Variation_unten) * Radius, Menge)
+    Halbachse_a = np.linspace(Radius * Variation_oben, Radius * Variation_unten, Menge)
     Halbachse_c = (Radius**3) / Halbachse_a**2
     Volumen = (4/3) * np.pi * Radius**3
  
@@ -280,12 +276,10 @@ def generate_ellipsoid_data(
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(f"# Monte Carlo Ergebnisse für {electrode_type.upper()}\n")
         f.write(f"# Radius: {(Radius * 1e6 * database['L_ges']):.3f} µm\n")
-        f.write(f"# Variation_unten: {Variation_unten:.3f} (a/c ≈ {1/Variation_unten:.3f})\n")
-        f.write(f"# Variation_oben: {Variation_oben:.3f} (a/c ≈ {Variation_oben:.3f})\n")
         f.write(f"# Aspektverhältnis-Bereich: {Halbachse_a[0]/Halbachse_c[0]:.3f} - {Halbachse_a[-1]/Halbachse_c[-1]:.3f}\n")
         f.write(f"# Anzahl Monte-Carlo-Samples: {Zufallsmenge} \n")
         f.write(f"# Anzahl verschiedener Ellipsoidformen: {Menge} \n")
- 
+       
         f.write("\nimport numpy as np\n\n")
        
         f.write("Halbachse_a = np.array(")
@@ -347,10 +341,11 @@ if __name__ == '__main__':
     print("\n" + "="*70)
     print("ANODE: GRAPHIT (flake-shaped)")
     print("="*70)
+   
     anode_data = generate_ellipsoid_data(
         Radius=database["R_n"],
-        Variation_unten=0.7,  
-        Variation_oben=1.5,  
+        Variation_unten=1.20,  
+        Variation_oben=1.63,  
         Menge=21,
         Zufallsmenge=1000,
         electrode_type='anode'
@@ -363,8 +358,8 @@ if __name__ == '__main__':
     print("="*70)
     kathode_data = generate_ellipsoid_data(
         Radius=database["R_p"],
-        Variation_unten=1.2,  
-        Variation_oben=1.2,  
+        Variation_unten=0.9,  
+        Variation_oben=1.1,  
         Menge=21,
         Zufallsmenge=1000,
         electrode_type='kathode'
